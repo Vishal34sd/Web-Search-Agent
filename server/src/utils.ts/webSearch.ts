@@ -4,6 +4,10 @@
 // it returns a clean array of search hits -> WebSearchResultSchema
 
 import {env} from "../shared/env" ;
+import {WebSearchResultSchema} from "../../src/utils.ts/schemas"
+import {WebSearchResultsSchema, } from "../../src/utils.ts/schemas"
+
+
 export async function webSearch(q : string){
     const query = (q?? '').trim();
     if(!query){
@@ -31,4 +35,30 @@ async function searchTavilyUtil(query: string){
             include_images : false
         }),
     });
+
+    if(!response.ok){
+        const text = await safeText(response)
+        throw new Error(`Tavily error , ${response.status} - ${text}`)
+
+    }
+
+    const data = await response.json();
+    const results = Array.isArray(data?.result) ? data.reslts : [];
+
+    const normalized = results.slice(0, 5).map((r: any)=> WebSearchResultSchema.parse({
+        title: String(r?.title ?? "").trim() || "Untitled",
+        url : String(r?.url ?? "").trim(),
+        snippet : String(r?.content ?? "").trim().slice(0, 200)
+    }))
+
+    return WebSearchResultsSchema.parse(normalized);
+}
+
+async function safeText(res: Response){
+    try{
+        return await res.json();
+    }
+    catch{
+        return "no body"
+    }
 }
