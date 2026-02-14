@@ -12,3 +12,14 @@ export const WebSearchResultsSchema = z.array(WebSearchResultSchema).max(10);
 //  saving cost and improving accuracy.
 
 export type WebSearchResult = z.infer<typeof WebSearchResultsSchema> ;
+
+export const openUrlInputSchema = z.object({
+    url : z.url() ,
+
+});
+
+export const openUrlOutputSchema = z.object({
+    url : z.url() ,
+    content : z.string().min(1)
+
+})
