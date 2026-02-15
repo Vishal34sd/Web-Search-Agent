@@ -14,7 +14,7 @@ export async function summarize(text : string){
     const res = await model.invoke([
         new SystemMessage([
             "You are a helpful assistant that writes short , accurate summaries.",
-            "Guidelines:" ,
+            "Guidelines:",
             " - Be factual and neutral , avaoid marketing languages. ",
             " - 5-8 sentences , no list unless absolutely necessary.",
             " - Do not invent sources , you can only summarize the provided text.",

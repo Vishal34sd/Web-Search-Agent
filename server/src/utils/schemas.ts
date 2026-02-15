@@ -8,7 +8,7 @@ export const WebSearchResultSchema = z.object({
 
 export const WebSearchResultsSchema = z.array(WebSearchResultSchema).max(10);
 
-//We filter web results into a small clean set and let the AI summarize it,
+// We filter web results into a small clean set and let the AI summarize it,
 //  saving cost and improving accuracy.
 
 export type WebSearchResult = z.infer<typeof WebSearchResultsSchema> ;
