@@ -4,8 +4,8 @@
 // it returns a clean array of search hits -> WebSearchResultSchema
 
 import {env} from "../shared/env" ;
-import {WebSearchResultSchema} from "../../src/utils.ts/schemas"
-import {WebSearchResultsSchema, } from "../../src/utils.ts/schemas"
+import {WebSearchResultSchema} from "./schemas"
+import {WebSearchResultsSchema, } from "./schemas"
 
 
 export async function webSearch(q : string){

@@ -5,7 +5,7 @@
 //we fetch the url , strip all the unnessary infos , keep exact article like content tht we need
 
 import {convert} from 'html-to-text'
-import {openUrlOutputSchema} from "../../src/utils.ts/schemas"
+import {openUrlOutputSchema} from "./schemas"
 
 export async function openUrl(url : string){
     // step 1

@@ -22,4 +22,12 @@ export const openUrlOutputSchema = z.object({
     url : z.url() ,
     content : z.string().min(1)
 
+});
+
+export const summarizeInputSchema   = z.object({
+    text : z.string().min(50 , "Need a bit more text to summarize ")
+});
+
+export const summarizeOutputSchema   = z.object({
+    summary : z.string().min(1 , "Need a bit more text to summarize ")
 })
